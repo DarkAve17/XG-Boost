@@ -15,14 +15,14 @@ train_data = pd.get_dummies(train_data, columns=['MSZoning', 'LotShape','LandCon
 print(train_data[:12])
 
 # Set the number of boosting rounds
-n_estimators = 100
+n_estimators = 2000
 
 # The target Variable is Sale Price
 X_train = train_data.drop('SalePrice', axis=1)  # Features for training
 y_train = train_data['SalePrice']               # Target variable for training
 
 # Instantiate XGBoost regressor
-regressor = xgb.XGBRegressor(objective='reg:squarederror', random_state=42, n_estimators=n_estimators, enable_categorical=True)
+regressor = xgb.XGBRegressor(objective='reg:squarederror',  n_estimators=n_estimators, enable_categorical=True) #random_state=42,
 
 # Train the model
 regressor.fit(X_train, y_train)
@@ -43,4 +43,4 @@ y_pred = regressor.predict(test_data)
 
 # Save predictions to a CSV file (optional)
 predictions = pd.DataFrame({'Id': test_ids, 'SalePrice': y_pred})
-predictions.to_csv(r'C:\Users\mridu\Documents\GitHub Repos\XG-Boost\Housing Prices Dataset\predictions.csv', index=False)
+predictions.to_csv(r'C:\Users\mridu\Documents\GitHub Repos\XG-Boost\Housing Prices Dataset\predictions2.csv', index=False)
