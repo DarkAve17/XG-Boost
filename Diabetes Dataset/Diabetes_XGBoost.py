@@ -1,6 +1,7 @@
 import xgboost as xgb
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score, classification_report
 
 # Load the diabetes dataset
 diabetes_data = pd.read_csv(r'C:\Users\mridu\Documents\GitHub Repos\XG-Boost\Diabetes Dataset\diabetes.csv')
@@ -32,7 +33,10 @@ print("Accuracy:", accuracy)
 
 # Save predictions to a CSV file (optional)
 predictions = pd.DataFrame({'Actual': y_test, 'Predicted': y_pred})
-predictions.to_csv('diabetes_predictions.csv', index=False)
+predictions.to_csv(r'C:\Users\mridu\Documents\GitHub Repos\XG-Boost\Diabetes Dataset\diabetes_predictions.csv', index=False)
 print(number_Boosts)
 predicted_data = pd.read_csv(r'C:\Users\mridu\Documents\GitHub Repos\XG-Boost\Diabetes Dataset\diabetes_predictions.csv')
 print(predicted_data)
+
+print("Classification Report:")
+print(classification_report(y_test, y_pred))
